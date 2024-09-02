@@ -1,0 +1,405 @@
+# -*- text -*-
+#
+# To generate the calendar: ./schedule.py > schedule.shtml
+#
+# This file follows a mostly self-documenting format for describing
+# calendar data.  Any line that begins with # is a comment.  A line of
+# the form "== Name ==" begins a new layer in the calendar.
+#
+# A line containing a date expression or a hyphen-separated date rate
+# moves forward to the next date (or date range) that satisfies that
+# expression.  Dates can be given in absolute form as "<Abbreviated
+# month> <day>, <year>", in relative form as the name of a weekday, as
+# the name of a layer (which represents all dates used by that layer)
+# or as a named date definition.  These can be combined with "and",
+# "or", "not", and parens in the expected way.  A line of the form
+# "NAME = DATE-EXPR" defines a named date definition.
+
+# A line that begins with "- " and any indented lines that follow it
+# add items to the current date:
+#
+# - Holiday[: text]
+# - Special[: text]
+# - Lec: <text>
+# - Rec: <text>
+# - Tut: <text>
+# - Prep [sections]: <text>
+# - Due: <text>
+# - Text [CSS class]: <text>
+#
+# <text> in any of these may be arbitrary HTML text, with the added
+# convenience that the form "[href text...]" is converted to a
+# hyperlink.
+#
+# Finally, {{raw}} directly emits raw html, after finishing the
+# current calendary week (if there is one).
+
+{{
+<style>
+table.calendar {
+    font-family: arial, helvetica;
+    font-size: 10pt;
+    empty-cells: show;
+    border: 1px solid #000000;
+    border-collapse: collapse;
+}
+table.calendar tr td {
+    border: 1px solid #aaaaaa;
+}
+table.calendar tr {
+    vertical-align: top;
+    height: 6em;
+    background: #eeeeee;
+}
+table.calendar thead tr {
+    text-align: center;
+    background: #444444;
+    color: #ffffff;
+    height: auto;
+    font-weight: bold;
+}
+.lecture {
+    background: #ffffaa;
+}
+.recitation {
+    background: #cccc99;
+}
+.tutorial {
+    background: #dddd55;
+}
+.quiz {
+    background: #ff9900;
+}
+.holiday {
+    background: #ccffcc;
+}
+.special {
+    background: #aaaaff;
+}
+.important {
+    background: #ffaaaa;
+}
+.reading {
+    color: #3333ff;
+}
+.deadline {
+    color: #ff0000;
+}
+.assignment {
+    color: #0aa00a;
+}
+.date {
+    color: #444444;
+}
+.due {
+    background: #ffaaaa;
+}
+</style>
+
+<p>Please assume that the
+material and schedule for future meetings may change.
+If you are particularly interested in some topic not covered here,
+send an email to <a href="https://julianetter.de">Julia</a>.</p>
+
+<p>All the readings for the weeks ahead will be available on <a href="https://canvas.brown.edu/courses/1086488/files">Canvas</a>, unless they are available as an ebook from the library. In that case, there will be a link on the schedule. </p>
+
+<div class="table-responsive">
+<table class="table calendar" cellspacing="0" cellpadding="6" width="100%">
+ <thead>
+  <tr>
+   <td width="24%">Monday</td><td width="14%">Tuesday</td>
+   <td width="24%">Wednesday</td><td width="14%">Thursday</td>
+   <td width="24%">Friday</td>
+  </tr>
+ </thead>
+}}
+
+##################################################################
+# Calendar data
+#
+
+== Holidays ==
+
+Oct 14, 2024
+- Holiday: Indigenous Peoples' Day
+#TUELEC = .
+
+Nov 27, 2024 - Dec 1, 2024
+- Holiday: Thanksgiving Recess
+
+== Special ==
+
+Sep 4, 2024
+- Special: First day of classes
+
+
+Dec 12, 2024
+- Special: Last day of classes
+
+Dec 13, 2024 - Dec 21, 2024
+- Text:  Exam period
+
+
+##################################################################
+
+== Lectures ==
+
+LEC = (Mon or Wed or Fri) and not Holidays
+
+# Skip opening convocation
+#Thr
+
+LEC
+- Lec: Introduction
+#- Prep: Read [https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing Angwin, Larson, Mattu, Kirchner, <i>Investigation into Machine Bias</i>]
+
+LEC
+- Prep: Have a go at [https://www.moralmachine.net the Moral Machine]
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>Algorithms and AI: justice and bias</b>
+- Prep: Read Susskind, <i>Future Politics</i>, chapters 14, 15, 16
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+
+LEC
+- Lec: <b>Algorithms and AI: justice and bias</b>
+- Prep: Read Friedman and Nissenbaum, <i>Bias in Computer Systems</i>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+
+LEC
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>Algorithms and AI: responsibility</b>
+- Prep: Read Nissenbaum, <i>Accountability in a computerized society</i>
+- Prep: Read Dennett, <i>When HAL Kills, Who’s to Blame?</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+
+
+LEC
+- Lec: <b>Algorithms and AI: responsibility</b>
+- Prep: Floridi and Sanders <i>On the morality of artificial agents</i>
+- Prep: Searle, <i>Minds, Brains and Programs</i>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+
+
+LEC
+- Lec: Discussion and writing workshop #1
+
+LEC
+- Lec: <b>Algorithms and AI: autonomous decision making</b>
+- Prep: Berlin, <i>The Pursuit of the Ideal</i>
+- Prep: Jarvis Thomson, <i>The Trolley Problem</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+
+
+LEC
+- Lec: <b>Algorithms and AI: autonomous decision making </b>
+- Prep: Himmelreich, <i>Never Mind the Trolley: The Ethics of Autonomous Vehicles in Mundane Situations</i>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Tue, 9pm)</span>
+
+
+LEC
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>Algorithms and AI: autonomous decision making</b>
+#- Prep: Sparrow, <i>Killer Robots</i>
+- Prep: Sharkey, <i>Killing Made Easy: From Joysticks to Politics</i>
+- Prep: [https://centerforneweconomics.org/publications/cold-evil-technology-and-modern-ethics/ Kimbrell, <i>Cold Evil: Technology And Modern Ethics, sections I-IV</i>]
+- Prep: Lokhorst and van den Hoven, <i>Responsibility for Military Robots</i>
+
+
+
+LEC
+- Lec: <b>The new digital public sphere: accountability and explicability</b>
+- Prep: [https://www.nytimes.com/2017/11/21/magazine/can-ai-be-taught-to-explain-itself.html Kuang, <i>Can AI Be Taught to Explain Itself?</i>]
+- Prep: Danaher, <i>The Threat of Algocracy: Reality, Resistance and Accommodation </i> 
+- Prep: Robbins, <i>A Misdirected principle with a Catch: Explicability for AI</i> 
+
+LEC
+- Lec: Discussion and flexible time
+
+
+LEC
+- Lec: <b>The new digital public sphere: privacy and surveillance</b>
+- Prep: Jarvis Thomson, <i>The Right to Privacy</i>
+- Prep: Véliz, <i>In the privacy of our streets</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Tue, 9pm)</span>
+
+
+LEC
+- Lec: <b>The new digital public sphere: privacy and surveillance</b>
+- Prep: Nagel, <i>Concealment and Exposure</i>
+- Prep: Susser, <i>Information Privacy and Social Self-Authorship</i>
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Thu, 9pm)</span>
+
+
+LEC
+- Lec: Discussion and flexible time 
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+
+LEC
+- Lec: Writing workshop #2
+
+
+LEC
+- Lec: <b>The new digital public sphere: content moderation and freedome of expression</b>
+- Prep: Klonik, </i>The New Governors: The People, Rules, and Processes Governing Online Speech</i>
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+
+
+LEC
+- Lec: <b>The new digital public sphere: content moderation and freedom of expression</b>
+- Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043265644606966 Mill, </i>On Liberty, chapter II: Of the Liberty of Thought and Discussion</i>]
+- Prep: <i>recommended, not required:</i> Balkin, </i>Digital Speech and Democratic Culture: A Theory of Freedom of Expression for the Information Society</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
+
+LEC
+- Lec: <b>The new digital public sphere: content moderation and freedom of expression</b>
+- Prep: [https://brown.primo.exlibrisgroup.com/permalink/01BU_INST/8j6vgc/alma991019252679706966 Waldron, </i>The Harm in Hate Speech, chapter 5</i>]
+
+
+
+
+
+LEC
+- Lec: Discussion and flexible time
+
+LEC
+- Lec: <b>The new digital public sphere: (mis-/dis-)information</b>
+- Prep: Nguyen, </i>Echo Chambers and Epistemic Bubbles </i> 
+
+
+LEC
+- Lec: <b>The new digital public sphere: (mis-/dis-)information</b>
+#- Prep: [https://cs50.harvard.edu/college/2020/fall/labs/10/Joshua%20Cohen%20and%20Archon%20Fung%20reading.pdf Cohen and Fung, <i>Democracy and the Digital Public Sphere</i>] 
+- Prep:  [https://aeon.co/essays/what-were-doing-when-were-doing-epistemology Sheff, <i>How do you know?</i>]
+#make this about internalism and externalism of belief 
+
+
+
+LEC
+- Lec: Discussion and flexible time
+
+#LEC
+#- Lec: <b>Coding and hacking</b>
+#- Prep: Thoreau, </i>On the Duty of Civil Disobedience</i> 
+#- Prep: [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043199800906966 Rawls, </i>A Theory of Justice,</i>  pp. 363-391]
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
+
+
+#LEC
+#- Lec: <b>Coding and hacking</b>
+#- Prep: Himma, </i>Hacking as Politically Motivated Digital Civil Disobedience: Is Hacktivism Morally Justified?</i> 
+#- Prep: Coleman, </i>Coding Freedom: The Ethics and Aesthetics of Hacking, </i> chapter 4 
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Tue, 9pm)</span>
+
+LEC
+- Lec: <b>The digital good life: attention </b>
+- Prep:  [https://bruknow.library.brown.edu/permalink/01BU_INST/9mvq88/alma991043495442806966 Williams, <i>Stand Out of Our Light: Freedom and Resistance in the Attention Economy</i> ]
+
+LEC
+- Lec: <b>The digital good life: attention </b>
+
+
+LEC
+- Lec: Final project workshop
+
+LEC
+- Lec: <b>The (digital) good life: authenticity</b>
+- Prep: Nozick, </i>The Examined Life,</i> chapter 10 
+#- Prep: [https://rintintin.colorado.edu/~vancecd/phil3160/Nozick1.pdf Nozick, read the excerpt on the Experience Machine from </i>Anarchy, State, Utopia</i>]
+
+
+LEC
+- Lec: <b>The (digital) good life: authenticity</b>
+- Prep: tbd 
+# make this about generative AI/LLMS/meaning of creativity
+
+
+LEC
+- Lec: <b>The (digital) good life: authenticity</b>
+- Prep: Bloomfield, </i>Social Media, Self-Deception, and Self-Respect</i>
+- Prep: Vallor, </i>Flourishing on facebook: virtue friendship & new social media</i>
+
+#- Text:  <span style="color: darkgreen;">Response: <b>group B</b> (due Sun, 9pm)</span>
+
+
+
+LEC
+- Lec: Discussion and flexible time
+
+#LEC
+#- Lec: <b>The (digital) good life: character</b>
+#- Prep: Vallor, </i>Moral Deskilling and Upskilling in a New Machine Age: Reflections on the Ambiguous Future of Character</i>
+#- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Tue, 9pm)</span>
+
+
+LEC
+- Lec: <b>Automation and the future of work</b>
+- Prep: Keynes, <i>Economic Possibilities for our Grandchildren </i> 
+- Prep: Elster, <i>Is there (or should there be) a right to work? </i> 
+
+LEC
+- Lec: <b>Automation and the future of work</b>
+- Prep: </i> Van Parijs, </i>Why Surfers Should be Fed: The Liberal Case for an Unconditional Basic Income</i> 
+
+
+LEC
+- Lec: Discussion and flexible time
+#- Text:  <span style="color: darkgreen;">Response: <b>group A</b> (due Thu, 9pm)</span>
+
+
+LEC
+- Lec: project presentations 
+
+LEC
+- Lec: project presentations 
+
+
+##################################################################
+== Labs ==
+
+#Sep 20, 2024
+#- Assign: Short paper #1
+
+Oct 6, 2024
+- Due: Short paper #1
+
+#Oct 18, 2024
+#- Assign: Short paper #2
+
+
+Nov 8, 2024
+- Due: Short paper #2 
+
+Nov 17, 2024
+- Due: Final project proposal
+
+Dec 1, 2024
+- Due: Final project draft (optional)
+
+Dec 13, 2024
+- Due: Final project
+
+
+##################################################################
+
+{{
+</table>
+</div>
+
+<script type="text/javascript">
+var d = new Date();
+for (var fwd = 0; fwd < 3; fwd++) {
+  var i = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+  var e = document.getElementById(i);
+  if (e) { e.style.border = '2px solid blue'; break; }
+  d.setTime(d.getTime() + 24*60*60*1000);
+}
+</script>
+
+<p></p>
+}}
