@@ -146,9 +146,6 @@ Dec 13, 2024 - Dec 21, 2024
 
 LEC = (Mon or Wed or Fri) and not Holidays
 
-# Skip opening convocation
-#Thr
-
 #week 1
 LEC
 - Lec: Introduction
@@ -174,7 +171,7 @@ LEC
 #week 3
 LEC
 - Lec: <b>The quantified mind</b>
-- Prep: Nozick, R. (1989). What is wisdom and why do philosophers love it so?, in The examined life
+- Prep: Nozick, What is wisdom and why do philosophers love it so?, in The examined life
 #- Text:  <span style="color: darkgreen;">Comment: <b>group B</b> (due Sun, 9pm)</span>
 
 
@@ -191,7 +188,7 @@ LEC
 
 LEC
 - Lec: <b>Quantified relationships</b>
-- Prep:Gabriels and Coeckelbergh, Technologies of the self and other: how self-tracking technologies also shape the other
+- Prep: Gabriels and Coeckelbergh, Technologies of the self and other: how self-tracking technologies also shape the other
 - Prep:  Taylor, Sources of the Self: The Making of the Modern Identity
 #- Text:  <span style="color: darkgreen;">Comment: <b>group A</b> (due Sun, 9pm)</span>
 
